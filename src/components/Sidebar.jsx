@@ -9,7 +9,7 @@ const Sidebar = ({selected,setSelected}) => {
 
             <div className={selected==='INBOX' ? 'active' : " " } onClick={()=>setSelected('INBOX')}>
                 <FaInbox className='icon' />
-                inbox
+                Inbox
                 </div>
 
             <div className={selected==='TODAY' ? 'active' : " " } onClick={()=>setSelected('TODAY')}>
