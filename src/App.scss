@@ -15,12 +15,11 @@ body{
     margin: 0;
     line-height: 1.5;
     font-family: 'Roboto', sans-serif;
-    color: #202020;
-    background-color:#fafafa;
+    background-color: gray;
 }
   .header{
-    border-bottom: solid 1px #ca2100;
-    background-color: #ca2100;
+    border-bottom: solid 1px black;
+    background-color: #1A3365;
     box-shadow:0 1px 2px rgba(0,0,0,0.16);
     height : 45px;
     width: 100%;
@@ -50,15 +49,15 @@ body{
     width: 266px;
     height: 100vh;
     padding-top: 80px;
-    border-right: 1px solid red;
-    background-color: antiquewhite;
+    border-right: 1px solid #1A3365;
+    background-color: #FF4343;
 
     div{
         margin-bottom: 11px;
         cursor: pointer;
         padding: 17px;
         &.active{
-            background-color: yellow;
+            background-color: #FFBB00;
         }
     }
 }
@@ -66,7 +65,7 @@ body{
     margin-right: 11px;
 }
 .task{
-    background-color: white;
+    background-color: #FFBB00;
     height: 100vh;
     width: 60%;
     padding:74px 20px 0px;
@@ -75,11 +74,12 @@ body{
         cursor: pointer;
     
     .plus{
-        color: #dd4b39;
+        color: #1A3365;
         font-size: 20px;
     }
     .add-task-text{
-        color: #545455;
+        color: #1A3365;
+        font-weight: bold;
         font-size: 15px;
         margin-left: 14px;
     }
@@ -89,7 +89,7 @@ body{
 
         input{
             width: 100%;
-            border: 1px solid #ddd;
+            border: 1px solid #1A3365;
             background-color: white;
             border-radius: 4px;
             height: 36px;
@@ -119,9 +119,10 @@ body{
             }
             .cancel-btn{
                 all:unset;
-                color: #555;
+                color: #1A3365;
                 cursor: pointer;
                 font-size: 15px;
+                font-weight: bold;
                 margin: 0px 7px;
             }
         }
