@@ -1,9 +1,22 @@
 import React,{useState} from 'react'
+// import DayPicker from 'react-day-picker';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import dateFnsFormat from 'date-fns/format'
 
+
+const FORMAT = 'dd/MM/yyyy';
+function formatDate(date, format, locale) {
+    return dateFnsFormat(date, format, { locale });
+  }
 
 
 const AddTask = ({onCancel,onAddTask }) => {
-    const [task, setTask]= useState(" ")
+    const [task, setTask]= useState(" ");
+    const [date, setDate] = useState(null)
+
+   
+
     return(
         <div className='add-task-dialog'>
         <input value={task} onChange={(e)=>setTask(e.target.value)} />
@@ -24,7 +37,14 @@ const AddTask = ({onCancel,onAddTask }) => {
                     } }> 
                  cancel </button>
             </div>
-            <div className='icon-container'></div>
+            <div className='icon-container'>
+            <DayPickerInput 
+             onDayChange={(day)=>setDate(day)}
+             placeholder={`${dateFnsFormat(new Date(), FORMAT)}`}
+             formatDate={formatDate}
+             format={FORMAT}
+             />
+            </div>
         </div>
         
     </div >    

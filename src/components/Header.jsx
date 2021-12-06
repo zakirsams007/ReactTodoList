@@ -11,7 +11,7 @@ import logo from '../Assets/todo.png';
              <div className='image'>
              <img src={logo} alt='todolistimage'/>  
              </div>  
-             <h1 style={{color:'red'}}>Todo-list</h1>
+             <h1 className='heading'>Todo-list</h1>
             </nav>
     </header>
 
