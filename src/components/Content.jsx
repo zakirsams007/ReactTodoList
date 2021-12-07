@@ -11,7 +11,7 @@ import Task from './Task';
        
         <section className='content'>
             <Sidebar selected ={selectedTab} setSelected={setSelectedTab} /> 
-             <Task />
+             <Task selectedTab={selectedTab} />
              {/* <Footer /> */}
         </section>
             

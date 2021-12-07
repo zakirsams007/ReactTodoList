@@ -12,7 +12,7 @@ function formatDate(date, format, locale) {
 
 
 const AddTask = ({onCancel,onAddTask }) => {
-    const [task, setTask]= useState(" ");
+    const [task, setTask]= useState("");
     const [date, setDate] = useState(null)
 
    
@@ -22,18 +22,22 @@ const AddTask = ({onCancel,onAddTask }) => {
         <input value={task} onChange={(e)=>setTask(e.target.value)} />
         <div className='add-task-actions-container'>
             <div className='btn-container'>
-                <button className='add-btn' onClick={()=>{
-                 onAddTask(task);
+                <button 
+                  
+                 disabled = {task<=0}
+                className='add-btn' onClick={()=>{
+                 onAddTask(task, date);
                  onCancel(); 
-                 setTask(" ");
+                 setTask("");
                 }}> 
                 Add Task 
                 </button>
 
-                <button className='cancel-btn'
-                 onClick={()=>{
+                <button 
+                  className='cancel-btn'
+                  onClick={()=>{
                      onCancel();
-                     setTask(" "); 
+                     setTask(""); 
                     } }> 
                  cancel </button>
             </div>
@@ -43,6 +47,11 @@ const AddTask = ({onCancel,onAddTask }) => {
              placeholder={`${dateFnsFormat(new Date(), FORMAT)}`}
              formatDate={formatDate}
              format={FORMAT}
+             dayPickerProps={{
+                 modifiers:{
+                     disabled:[{before:new Date()}]
+                 }
+             }}
              />
             </div>
         </div>
@@ -51,19 +60,25 @@ const AddTask = ({onCancel,onAddTask }) => {
     )
 
 }
+const task_header_mapping = {
+    INBOX:'Inbox',
+    TODAY:'Today',
+    NEXT_7:'Next 7 Days'
+}
 
- const Task = () => {
+ const Task = ({selectedTab}) => {
      const [showAddTask,setShowAddTask]= useState(false);
      const [tasks, setTasks] = useState([])
 
-     const addNewTask=(text) =>{
-         setTasks((prevState)=>[...prevState, text])
+     const addNewTask=(text, date) =>{
+         const newTaskItem = {text, date: date || new Date()}
+         setTasks((prevState)=>[...prevState, newTaskItem])
 
 
      }
     return (
         <div className='task'>
-            <h1>Inbox</h1>
+            <h1>{task_header_mapping[selectedTab]}</h1>
 
             <div className='add-task-btn' 
             onClick={()=>setShowAddTask((prevState)=> !prevState)}>
@@ -73,7 +88,10 @@ const AddTask = ({onCancel,onAddTask }) => {
            {showAddTask && <AddTask onAddTask={addNewTask}
             onCancel={()=> setShowAddTask(false)}/>} 
 
-            {tasks.length > 0 ? tasks.map((task)=> <ul><li>{task}</li></ul>) :
+            {tasks.length > 0 ? tasks.map((task)=> <ul><li>
+                {task.text}{" "}
+                {dateFnsFormat(new Date(task.date), FORMAT)}
+                </li></ul>) :
              <p>No Task Yet!</p>}
         </div>
     )
